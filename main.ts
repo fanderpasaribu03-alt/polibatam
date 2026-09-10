@@ -1,22 +1,15 @@
-// ==========================================
-// EXTENSION: MyRobot Plus (versi fleksibel)
-// Semua pin bisa diatur lewat BLOCK, tidak perlu edit kode lagi!
-// ==========================================
-
 enum MyMotor {
     //% block="kiri"
     Left,
     //% block="kanan"
     Right
 }
-
 enum MyDirection {
     //% block="maju"
     Forward,
     //% block="mundur"
     Backward
 }
-
 enum RgbColor {
     //% block="merah"
     Red,
@@ -33,9 +26,6 @@ enum RgbColor {
     //% block="mati"
     Off
 }
-
-//% color="#0fbc11" icon="\uf1b9" block="MyRobot Plus"
-//% groups=['Pengaturan Pin', 'Motor', 'Ultrasonic', 'Line Tracking', 'LED', 'Buzzer']
 namespace myRobotPlus {
 
     // ---------- NILAI DEFAULT (bisa diubah lewat block "atur pin...") ----------
@@ -143,8 +133,8 @@ namespace myRobotPlus {
     //% group="Motor"
     //% weight=90
     export function stopMotor(motor: MyMotor): void {
-        let speedPin = motor == MyMotor.Left ? pinMotorKiri : pinMotorKanan
-        pins.analogWritePin(speedPin, 0)
+        let speedPin2 = motor == MyMotor.Left ? pinMotorKiri : pinMotorKanan
+        pins.analogWritePin(speedPin2, 0)
     }
 
     /**
@@ -219,6 +209,7 @@ namespace myRobotPlus {
         pins.analogWritePin(pinLedR, r)
         pins.analogWritePin(pinLedG, g)
         pins.analogWritePin(pinLedB, b)
+        basic.showNumber(r)   
     }
 
     // ================= BUZZER =================
@@ -234,3 +225,6 @@ namespace myRobotPlus {
         music.playTone(freq, durasi)
     }
 }
+basic.forever(function () {
+    myRobotPlus.nyalakanLED(RgbColor.Blue)
+})
